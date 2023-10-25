@@ -1,0 +1,49 @@
+<!-- Create a mini calculator application, which has following functionalities
+Addition
+Subtraction
+Division
+Multiplication
+Your app should have
+Two input boxes which should take two numbers from the user.
+Four Buttons with following text content
+Add
+Subtract
+Divide
+Multiply
+When user enter 2 and 4 and clicks on multiply button, an alert should come with 8 as ans
+When user enter 8 and 4 and clicks on Divide button,an alert should come with 2 as ans<!DOCTYPE html> -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Calculator</title>
+</head>
+<body>
+    <input type="number" id="input1" placeholder="enter 1st Number">
+    <input type="number" id="input2" placeholder="enter 2nd Number">
+    <br><br>
+    &nbsp;
+    <button onclick="click1()">Add</button> &nbsp;
+    <button onclick="click2()">Subtract</button>&nbsp;
+    <button onclick="click3()">Multiply</button>&nbsp;
+    <button onclick="click4()">Divide</button>
+</body>
+</html>
+<script>
+    function click1(){
+        let output1 = Number(document.getElementById("input1").value) + Number(document.getElementById("input2").value);
+        alert(output1);
+    }
+    function click2(){
+        let output2 = Number(document.getElementById("input1").value) - Number(document.getElementById("input2").value);
+        alert(output2);
+    }
+    function click3(){
+        let output3 = Number(document.getElementById("input1").value) * Number(document.getElementById("input2").value);
+        alert(output3);
+    }
+    function click4(){
+        let output4 = Number(document.getElementById("input1").value) / Number(document.getElementById("input2").value);
+        alert(output4);
+    }
+</script>
