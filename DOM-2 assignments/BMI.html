@@ -1,0 +1,55 @@
+<!-- Create an application which calculates BMI (Body Mass Index)
+Your app should have 2 input boxes
+Take weight in kgs from user
+Take height in meters from user
+Based on entered height and weight calculate BMI of that person
+Here is the formula for manually calculating BMI  BMI = (weight) / (height * height)
+From the obtained BMI result, display whether the person is
+UnderWeight - bmi <= 18.4
+Normal Weight - bmi >= 18.5 && bmi <= 24.9
+Overweight - bmi >= 25 && bmi <= 29.9
+Obese - bmi >= 30 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+</head>
+<body>
+    <h2>Check your BMI</h2>
+    <p>Enter your weight and height below to check your BMI results</p>
+    <p>Put your weight in here (KG)</p>
+    <input type="number" placeholder="Enter weight" id="weight">
+    <p>and your height in here (CM)</p>
+    <input type="number" placeholder="Enter height" id="height">
+    <br>
+    <button id="calculate">Calculate BMI</button>
+    <p>Your BMI is <span id="bmi"></span> which means Your are <span id="final"></span></p>
+    
+</body>
+</html>
+<script>
+    let weight = document.getElementById('weight');
+    let height= document.getElementById('height');
+    let bmi = document.getElementById('bmi');
+    let final = document.getElementById('final');
+    let calculate = document.getElementById('calculate');
+    calculate.addEventListener('click',function(){
+        bmi.innerText = (Number(weight.value))/((Number(height.value)/100)**2) 
+
+        if (bmi.innerText<=18.4){
+            final.innerText="Under Weight";
+        }
+        else if (bmi.innerText>=18.5 && bmi.innerText <=24.9){
+            final.innerText="Normal Weight";
+        } 
+        else if (bmi.innerText>=25 && bmi.innerText <=29.9){
+            final.innerText="Overweight";
+        }
+        else if (bmi.innerText>=30){
+            final.innerText="Obese";
+        }
+    })
+</script>

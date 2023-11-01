@@ -1,0 +1,169 @@
+<!-- Create the file leaderboard.html so that it looks similar to the image below
+Functionality
+By clicking on any number it shows up in the score box joined to any previous numbers already present (Eg: To enter a score of 423 you have to press 4 2 3)
+Once the button ENTER is pressed the score gets compared with the MIN and MAX boxes, if the current score is less than the MIN score it gets updated with the current score, if the current score is greater than the MAX score it gets updated with the current score
+The SCORE box will be reset with empty value -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Max & Min</title>
+    <style>
+        #parent{
+            /* border: 1px solid red; */
+            margin: auto;
+            width: 25%;
+            height: auto;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            padding-top: 3%;
+            padding-bottom: 3%;
+        }
+        #parent > #first {
+            display: flex;
+            justify-content: space-around;
+        }
+        #parent > #first > #child1{
+            /* border: 2px solid blue; */
+            /* margin: auto; */
+            height: 70px;
+            width: 35%;
+            margin-bottom: 5%;
+            background-color: red;
+            /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+            border-radius: 7px;
+        }
+        #parent > #first > #child2{
+            /* border: 2px solid blue; */
+            /* margin: auto; */
+            height: 70px;
+            width: 35%;
+            margin-bottom: 5%;
+            background-color: green;
+            /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+            border-radius: 7px;
+        }
+        #second{
+            /* border: 2px solid green; */
+            display: grid;
+            grid-template-columns: repeat(3,1fr); 
+            grid-template-rows: auto;
+            gap: 10px;
+            margin: auto;
+            width: 77%;
+            height: auto;
+        }
+        #second > button{
+            /* border: 2px solid purple; */
+            height: 50px;
+            font-weight:900;
+            border: none;
+            border-radius: 7px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: large;
+        }
+        #first > h2{
+            text-align: center;
+            padding-top: 10px;
+        }
+        #score {
+            width: 65%;
+            height: 70px;
+            border: 1px solid black;
+            margin: auto;
+            padding: 10px;
+            background-color: grey;
+            border-radius: 10px;
+            border: none;
+            margin-bottom: 22px;
+        }
+        #name {
+            display: flex;
+            justify-content: space-around;
+            line-height: 0px;
+        }
+        #enter>button{
+            margin: auto;
+            height: 50px;
+            font-weight:900;
+            border: none;
+            border-radius: 7px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: large;
+            margin-left: 53px;
+            margin-top: 22px;
+            width: 70%;
+            background-color: rgb(255, 254, 254);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div id="first">
+            <div id="child1">
+                <h3 id="min" style="text-align: center;">100</h3>
+            </div>
+            <div id="child2">
+                <h3 id="max" style="text-align: center; ">200</h3>
+            </div>
+        </div>
+        <div id="name">
+            <h3>MIN</h3>
+            <h3>MAX</h3>
+        </div>
+        <div id="score">
+            <h4>SCORE # - <span id="numbers"></span></h4>
+        </div>
+        <div id="second">
+            <button class="btn" style="background-color: white;">1</button>
+            <button class="btn" style="background-color: white;">2</button>
+            <button class="btn" style="background-color: white;">3</button>
+            <button class="btn" style="background-color: white;">4</button>
+            <button class="btn" style="background-color: white;">5</button>
+            <button class="btn" style="background-color: white;">6</button>
+            <button class="btn" style="background-color: white;">7</button>
+            <button class="btn" style="background-color: white;">8</button>
+            <button class="btn" style="background-color: white;">9</button>
+            <button class="btn" style="background-color: white;">0</button>
+        </div>
+        <div id="enter">
+            <button>ENTER</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    let keypad = document.getElementsByClassName('btn');
+    let score = document.getElementById('numbers');
+    let min = document.getElementById('min');
+    let max = document.getElementById('max');
+    let enter = document.getElementById('enter');
+
+    enter.addEventListener('click',function()
+    {
+       answer(); 
+       num = "";
+    })
+    
+    let num = "";
+
+    for (let i=0;i<keypad.length;i++){
+        keypad[i].addEventListener('click',function()
+        {
+                num += keypad[i].innerText;
+                score.innerText = num; 
+        })
+    }
+    function answer(){
+        if (Number(num)<Number(min.innerText)){
+            min.innerText = num;
+        }
+        else if (Number(num)>Number(max.innerText)){
+            max.innerText = num;
+        }
+    }
+   
+</script>

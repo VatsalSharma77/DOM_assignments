@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masai Calculator</title>
+    <style>
+        #parent{
+            /* border: 1px solid red; */
+            margin: auto;
+            width: 25%;
+            height: auto;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            padding-top: 3%;
+            padding-bottom: 3%;
+        }
+        #parent > #first{
+            /* border: 2px solid blue; */
+            margin: auto;
+            height: 50px;
+            width: 77%;
+            margin-bottom: 5%;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 7px;
+        }
+        #second{
+            /* border: 2px solid green; */
+            display: grid;
+            grid-template-columns: repeat(4,1fr); 
+            grid-template-rows: auto;
+            gap: 10px;
+            margin: auto;
+            width: 77%;
+            height: auto;
+        }
+        #second > button{
+            /* border: 2px solid purple; */
+            height: 50px;
+            font-weight:900;
+            border: none;
+            border-radius: 7px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: large;
+        }
+        #first > h2{
+            text-align: center;
+            padding-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;color: darkcyan;font-size: 40px;">Masai Calculator</h1><br>
+    <div id="parent">
+        <div id="first">
+            <h2></h2>
+        </div>
+        <div id="second">
+            <button class="btn" style="background-color: white;">1</button>
+            <button class="btn" style="background-color: white;">2</button>
+            <button class="btn" style="background-color: white;">3</button>
+            <button class="otr" style="background-color: black;color: white;">+</button>
+            <button class="btn" style="background-color: white;">4</button>
+            <button class="btn" style="background-color: white;">5</button>
+            <button class="btn" style="background-color: white;">6</button>
+            <button class="otr" style="background-color: black;color: white;">-</button>
+            <button class="btn" style="background-color: white;">7</button>
+            <button class="btn" style="background-color: white;">8</button>
+            <button class="btn" style="background-color: white;">9</button>
+            <button class="otr" style="background-color: black;color: white;">x</button>
+            <button id="clear" style="background-color: red;color: white;">C</button>
+            <button class="btn" style="background-color: white;">0</button>
+            <button id="final" style="background-color: black;color: white;">=</button>
+            <button class="otr" style="background-color: black;color: white;">/</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    let keypad = document.getElementsByClassName('btn');
+    let operator = document.getElementsByClassName('otr');
+    let first = document.querySelector('#first > h2');
+    let final = document.getElementById('final');
+    let clear = document.getElementById('clear');
+    let firstnumber = true;
+
+    let first_num = "";
+    let second_num  ="";
+    let opt = "";
+
+    clear.addEventListener('click',function(){
+        first.innerText="";
+        firstnumber=true;
+        first_num = "";
+        second_num  ="";
+        opt = "";
+    })
+
+    final.addEventListener('click',function()
+    {
+        first.innerText = calculate(first_num,second_num,opt);
+    })
+
+    for (let i=0;i<keypad.length;i++){
+        keypad[i].addEventListener('click',function()
+        {
+            if (firstnumber==true)
+            {
+                first_num += keypad[i].innerText;
+                first.innerText = first_num;
+            }
+            else {
+                second_num += keypad[i].innerText;
+                first.innerText = second_num;
+            }
+           
+        })
+    }
+    for (let i=0;i<operator.length;i++){
+        operator[i].addEventListener('click',function()
+        {
+            firstnumber=false;
+            opt=operator[i].innerText;
+            first.innerText=opt;
+        })
+    }
+
+    function calculate(first_num,second_num,opt){
+        switch(opt)
+        {
+            case "+":
+                return Number(first_num) + Number(second_num);
+            case "-":
+                return Number(first_num) - Number(second_num);
+            case "*":
+                return Number(first_num) * Number(second_num);
+            case "/":
+                return Number(first_num) / Number(second_num);
+        }
+    }
+</script>
